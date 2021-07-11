@@ -6,7 +6,6 @@ use App\service\MarkdownHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 use App\Entity\Question;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -24,7 +23,7 @@ class QuestionController extends AbstractController
         return new Response($html);
         */
         $repository = $entityManager->getRepository(Question::class);
-        $questions = $repository->findBy([],['askedAt'=>'DESC']);
+        $questions = $repository->findAllAskedOrderedByNewest();
         return $this->render('question/homepage.html.twig',[
             'questions'=>$questions,
         ]);
