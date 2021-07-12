@@ -112,4 +112,18 @@ class Question
 
         return $this;
     }
+
+    public function upVote(): self
+    {
+        $this->votes++;
+        return $this;
+    }
+
+    public function downVote(): self
+    {
+        $this->votes--;
+        return $this;
+    }
+
+
 }
